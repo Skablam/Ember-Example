@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Ember Example</title>
+    <script src="jquery-1.11.1.js"></script>
+    <script src="handlebars-v1.3.0.js"></script>
+    <script src="ember-1.8.1.js"></script>
+    <script src="ember-data.js"></script>
+    <script src="app.js"></script>
+    <link href="bootstrap.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <script type="text/x-handlebars" data-template-name="application">
+      <div class="navbar navbar-default">
+        <div class="container">
+          <ul class='nav navbar-nav navbar-right'>
+            {{#link-to 'index' tagName='li'}}<a>Home</a>{{/link-to}}
+            {{#link-to 'about' tagName='li'}}<a>About</a>{{/link-to}}
+            {{#link-to 'vehicles' tagName='li'}}<a>Vehicles</a>{{/link-to}}
+            {{#link-to 'contacts' tagName='li'}}<a>Contacts</a>{{/link-to}}
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        {{outlet}}
+      </div>
+      <footer class="container"></footer>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="index">
+      <div class="col-md-12">
+
+        <h1>Hello and welcome, this is my first ember app</h1>
+
+        <p>There are {{productCount}} products</p>
+
+        <p>
+          To see the list of vehicles click {{#link-to 'vehicles'}}here{{/link-to}}
+        </p>
+
+        <p>{{time}}</p>
+
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="about">
+      <h1>About my example ember app</h1>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="vehicles">
+      <h1>Vehicles</h1>
+
+      {{#each}}
+        <h2>{{title}}</h2>
+        <h3>{{description}}</h3>
+      {{/each}}
+
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="vehicle">
+      <h1>One vehicle at a time</h1>
+
+      <p>{{model.title}}</p>
+      <p>{{model.description}}</p>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="contacts">
+      <div class="container">
+        <h1>Contacts</h1>
+        <div class="col-md-3">
+          {{#each}}
+          <h2>{{#link-to 'contact' this}}{{name}}{{/link-to}}</h2>
+          {{/each}}
+        </div>
+        <div class="col-md-9">
+          {{outlet}}
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="contact">
+      <p>{{model.name}}</p>
+      <p>{{model.job}}</p>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="contacts/index">
+      <p>Please select a contact</p>
+    </script>
+  </body>
+</html>
